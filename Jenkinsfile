@@ -8,28 +8,19 @@ pipeline {
             }
         }
 
-        stage('Restore the project') {
-            when {
-                branch 'main'
-            }
+        stage('Restore Dependencies') {
             steps {
                 bat 'dotnet restore'
             }
         }
 
-        stage('Build the project') {
-            when {
-                branch 'main'
-            }
+        stage('Build') {
             steps {
                 bat 'dotnet build --no-restore'
             }
         }
 
-        stage('Test the project') {
-            when {
-                branch 'main'
-            }
+        stage('Test') {
             steps {
                 bat 'dotnet test --no-build --verbosity normal'
             }
